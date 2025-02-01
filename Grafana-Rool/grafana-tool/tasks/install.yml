@@ -1,0 +1,34 @@
+# tasks/install.yml
+
+- name: Install dependencies for Ubuntu
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - software-properties-common
+    - apt-transport-https
+  when: ansible_facts['os_family'] == 'Debian'
+
+- name: Add Grafana GPG key (Ubuntu)
+  apt_key:
+    url: "https://packages.grafana.com/gpg.key"
+    state: present
+  when: ansible_facts['os_family'] == 'Debian'
+
+- name: Add Grafana APT repository (Ubuntu)
+  apt_repository:
+    repo: "{{ grafana_repo.ubuntu }}"
+    state: present
+  when: ansible_facts['os_family'] == 'Debian'
+
+- name: Install Grafana package (Ubuntu)
+  apt:
+    name: "{{ grafana_packages.ubuntu }}"
+    state: present
+  when: ansible_facts['os_family'] == 'Debian'
+
+- name: Ensure Grafana is running and enabled
+  systemd:
+    name: "{{ grafana_service }}"
+    state: started
+    enabled: yes

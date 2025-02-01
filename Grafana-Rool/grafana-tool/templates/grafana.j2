@@ -1,0 +1,11 @@
+# templates/grafana.j2
+
+[server]
+# The domain to be used by the Grafana instance
+domain = {{ grafana_config.server.domain }}
+http_port = {{ grafana_config.server.http_port }}
+
+[database]
+# The database configuration for Grafana
+type = {{ grafana_config.database.type }}
+path = {{ grafana_config.database.path }}

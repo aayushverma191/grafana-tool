@@ -1,0 +1,21 @@
+---
+# defaults file for grafana_tool
+grafana_version: "9.0.0"  # Default version to install
+grafana_repo_url: "https://grafana.com/api/datasets/repo/releases/download/grafana-{{ grafana_version }}.tar.gz"
+
+# Configuration options
+grafana_config:
+   server:
+      domain: "localhost"
+      http_port: 3000
+   database:
+    type: "sqlite3"
+    path: "/var/lib/grafana/grafana.db"
+      # List of OS-specific package names for Grafana
+grafana_repo:
+  ubuntu: "deb https://packages.grafana.com/oss/deb stable main"
+grafana_packages:
+  ubuntu: "grafana"
+
+# Services and repos
+grafana_service: "grafana-server"

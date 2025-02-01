@@ -1,0 +1,9 @@
+---
+# handlers file for grafana_tool
+# handlers/main.yml
+
+- name: Restart Grafana
+  systemd:
+    name: "{{ grafana_service }}"
+    state: restarted
+    enabled: yes

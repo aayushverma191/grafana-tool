@@ -1,0 +1,7 @@
+# tasks/configuration.yml
+
+- name: Configure Grafana using template
+  template:
+    src: grafana.j2
+    dest: "/etc/grafana/grafana"
+  notify: Restart Grafana
